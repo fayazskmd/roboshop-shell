@@ -11,7 +11,7 @@ unzip /tmp/frontend.zip &>>/tmp/roboshop.log
 
 # we need to copying
 echo -e "\e[33mUPDATE frontend configuration\e[0m"
-cp roboshop.conf /etc/nginx/default.d/roboshop.conf
+cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf
 
 echo -e "\e[33mStarting Nginx Server\e[0m"
 systemctl enable nginx &>>/tmp/roboshop.log
