@@ -12,6 +12,7 @@ echo -e "\e[33m download application\e[0m"
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip &>>/tmp/roboshop.log
 
 echo -e "\e[33m unzip file\e[0m"
+cd /app
 unzip /tmp/shipping.zip &>>/tmp/roboshop.log
 
 
@@ -22,7 +23,7 @@ mv target/shipping-1.0.jar shipping.jar &>>/tmp/roboshop.log
 echo -e "\e[33m install mysql\e[0m"
 dnf install mysql -y &>>/tmp/roboshop.log
 echo -e "\e[33m mysql client\e[0m"
-mysql -h mysql-dev.devopsb96.store -uroot -pRoboShop@1 < /app/schema/shipping.sql &>>/tmp/roboshop.log
+mysql -h mysql-dev.devopsb96.store -uroot -pRoboShop@1 </app/schema/shipping.sql &>>/tmp/roboshop.log
 echo -e "\e[33m system setup\e[0m"
 cp /home/centos/roboshop-shell/shipping.service /etc/systemd/system/shipping.service
 
