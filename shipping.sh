@@ -16,7 +16,7 @@ cd /app
 unzip /tmp/shipping.zip &>>/tmp/roboshop.log
 
 
-echo -e "\e[33m clean package\e[0m"
+echo -e "\e[33m cleaned package\e[0m"
 mvn clean package &>>/tmp/roboshop.log
 mv target/shipping-1.0.jar shipping.jar &>>/tmp/roboshop.log
 
