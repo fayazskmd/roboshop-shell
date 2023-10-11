@@ -16,7 +16,8 @@ unzip /tmp/payment.zip &>>/tmp/roboshop.log
 echo -e "\e[33m install dependencies\e[0m"
 cd /app
 pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
-
+ echo -e "\e[33m configure payment service\e[0m"
+cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service
 
 echo -e "\e[33m start payment servicesl\e[0m"
 systemctl daemon-reload &>>/tmp/roboshop.log
