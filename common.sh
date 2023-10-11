@@ -6,24 +6,24 @@ app_presetup()
 {
     echo -e "${color}User add${nocolor}"
   useradd roboshop &>>$log_file
-   if [$? -eq 0]; then
-      echo success
-      else
-      echo Failure
-      fi
+   if [ $? -eq 0 ]; then
+       echo success
+       else
+       echo Failure
+       fi
    echo -e "${color}Create Application directory${nocolor}"
    rm -rf ${app_path} &>>$log_file
      mkdir ${app_path}
-      if [$? -eq 0]; then
-         echo success
-         else
-         echo Failure
-         fi
+      if [ $? -eq 0 ]; then
+          echo success
+          else
+          echo Failure
+          fi
       echo -e "${color}Download application${nocolor}"
        curl -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>$log_file
 
        cd ${app_path}
-         if [$? -eq 0]; then
+        if [ $? -eq 0 ]; then
             echo success
             else
             echo Failure
@@ -32,7 +32,7 @@ app_presetup()
          unzip /tmp/$component.zip &>>$log_file
 
          cd ${app_path}
-           if [$? -eq 0]; then
+          if [ $? -eq 0 ]; then
               echo success
               else
               echo Failure
@@ -99,7 +99,7 @@ python()
   echo -e "${color} install python${nocolor}"
 
   dnf install python36 gcc python3-devel -y &>>${log_file}
-  if [$? -eq 0]; then
+  if [ $? -eq 0 ]; then
     echo success
     else
     echo Failure
