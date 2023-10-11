@@ -30,3 +30,14 @@ nodejs()
   systemctl enable $component &>>$log_file
   systemctl start $component &>>$log_file
 }
+
+mongo_schema_setup ()
+{
+  echo -e "\e[33mCopy mongodb repo\e[0m"
+  cp /home/centos/roboshop-shell/mongodb.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log
+  echo -e "\e[33mInstalling mongodb client\e[0m"
+  dnf install mongodb-org-shell -y &>>/tmp/roboshop.log
+  echo -e "\e[33mLoad schema\e[0m"
+  mongo --host mongodb-dev.devopsb96.store </app/schema/user.js &>>/tmp/roboshop.log
+}
+
