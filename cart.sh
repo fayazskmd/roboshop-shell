@@ -1,25 +1,26 @@
+source common.sh
+component=cart
+echo -e "${color}Configuring nodejs repos${nocolor}"
 
-echo -e "\e[33mConfiguring nodejs repos\e[0m"
-
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/roboshop.log
-echo -e "\e[33mInstalling Nodejs Server\e[0m"
-dnf install nodejs -y &>>/tmp/roboshop.log
-echo -e "\e[33mUser add\e[0m"
-useradd roboshop &>>/tmp/roboshop.log
-echo -e "\e[33mCreate Application directory\e[0m"
-rm -rf /app &>>/tmp/roboshop.log
-mkdir /app
-echo -e "\e[33mDownload application\e[0m"
-curl -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart.zip &>>/tmp/roboshop.log
-cd /app
-echo -e "\e[33mUnzip File\e[0m"
-unzip /tmp/cart.zip &>>/tmp/roboshop.log
-cd /app
-echo -e "\e[33mInstalling dependencies\e[0m"
-npm install &>>/tmp/roboshop.log
-echo -e "\e[33mUpdate setup\e[0m"
-cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service &>>/tmp/roboshop.log
-echo -e "\e[33mStart service\e[0m"
-systemctl daemon-reload &>>/tmp/roboshop.log
-systemctl enable cart &>>/tmp/roboshop.log
-systemctl start cart &>>/tmp/roboshop.log
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>${log_file}
+echo -e "${color}Installing Nodejs Server${nocolor}"
+dnf install nodejs -y &>>${log_file}
+echo -e "${color}User add${nocolor}"
+useradd roboshop &>>${log_file}
+echo -e "${color}Create Application directory${nocolor}"
+rm -rf ${app_path} &>>${log_file}
+mkdir ${app_path}
+echo -e "${color}Download application${nocolor}"
+curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log_file}
+cd ${app_path}
+echo -e "${color}Unzip File${nocolor}"
+unzip /tmp/${component}.zip &>>${log_file}
+cd ${app_path}
+echo -e "${color}Installing dependencies${nocolor}"
+npm install &>>${log_file}
+echo -e "${color}Update setup${nocolor}"
+cp /home/centos/roboshop-shell/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
+echo -e "${color}Start service${nocolor}"
+systemctl daemon-reload &>>${log_file}
+systemctl enable ${component} &>>${log_file}
+systemctl start ${component} &>>${log_file}
