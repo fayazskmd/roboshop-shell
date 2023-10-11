@@ -38,6 +38,6 @@ mongo_schema_setup ()
   echo -e "\${color}Installing mongodb client${nocolor}"
   dnf install mongodb-org-shell -y &>>${log_file}
   echo -e "\${color}Load schema${nocolor}"
-  mongo --host mongodb-dev.devopsb96.store <${app_path}/schema/user.js &>>${log_file}
+  mongo --host mongodb-dev.devopsb96.store <${app_path}/schema/$component.js &>>${log_file}
 }
 
