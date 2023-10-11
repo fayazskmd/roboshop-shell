@@ -1,8 +1,8 @@
 
 
 source common.sh
-component=paayment
+component=payment
 
-shipping
+python
 
 
