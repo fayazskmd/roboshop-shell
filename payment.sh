@@ -7,7 +7,7 @@ echo -e "\e[33m app directory\e[0m"
 rm -rf /app &>>/tmp/roboshop.log
 mkdir /app &>>/tmp/roboshop.log
 echo -e "\e[33m download\e[0m"
-curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
+curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip &>>/tmp/roboshop.log
 cd /app
 echo -e "\e[33m unzip\e[0m"
 unzip /tmp/payment.zip &>>/tmp/roboshop.log
