@@ -1,4 +1,4 @@
-sudo common.sh
+source common.sh
 
 echo -e "${color}Installing Nginx Server${nocolor}"
 
