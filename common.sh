@@ -72,3 +72,26 @@ systemctl daemon-reload &>>${log_file}
 systemctl enable shipping &>>${log_file}
 systemctl restart shipping &>>${log_file}
 }
+python()
+{
+  echo -e "${color} install python${nocolor}"
+
+  dnf install python36 gcc python3-devel -y &>>${log_file}
+  app_presetup
+
+  echo -e "${color} install dependencies${nocolor}"
+  cd ${app_path}
+  pip3.6 install -r requirements.txt &>>${log_file}
+   echo -e "${color} configure payment service${nocolor}"
+  cp /home/centos/roboshop-shell/$component.service /etc/systemd/system/$component.service
+
+
+
+  echo -e "${color} start payment servicesl${nocolor}"
+  systemctl daemon-reload &>>${log_file}
+
+  systemctl enable payment &>>${log_file}
+  systemctl restart payment &>>${log_file}
+
+
+}
